@@ -1,21 +1,8 @@
-
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author moviles
- */
 public class FrmVentana extends javax.swing.JFrame {
-
     int lista[];//Declaracion del arreglo
     byte n, cont;
-
     /**
      * Creates new form FrmVentana
      */
@@ -36,6 +23,8 @@ public class FrmVentana extends javax.swing.JFrame {
     private void initComponents() {
 
         btnCapturar = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txaLista = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,33 +35,53 @@ public class FrmVentana extends javax.swing.JFrame {
             }
         });
 
+        txaLista.setColumns(20);
+        txaLista.setRows(5);
+        jScrollPane1.setViewportView(txaLista);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(152, 152, 152)
+                .addGap(21, 21, 21)
                 .addComponent(btnCapturar)
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addGap(98, 98, 98)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(115, 115, 115)
+                .addGap(117, 117, 117)
                 .addComponent(btnCapturar)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(22, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void imprimirLista(){
+      String cadena = "";  
+        
+        for (int i = 0; i < cont; i++) {
+          cadena = cadena + lista[i] + "\n";
+        txaLista.setText(cadena);  
+        }
+    }
+    
     private void btnCapturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapturarActionPerformed
-    int num;  
+        int num;  
         
         if(cont<n){
         num = Integer.parseInt(JOptionPane.showInputDialog(null,"Ingresa un valor:"));
         lista[cont] = num;
         cont++;
+        imprimirLista();
       }else{
             JOptionPane.showMessageDialog(null, "No hay lugar en el arreglo");
         }
@@ -116,5 +125,7 @@ public class FrmVentana extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapturar;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txaLista;
     // End of variables declaration//GEN-END:variables
 }
