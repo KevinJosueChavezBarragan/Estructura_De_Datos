@@ -1,15 +1,23 @@
+package proyectoarreglo;
+
 import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author moviles
+ */
 public class FrmVentana extends javax.swing.JFrame {
-    int lista[];//Declaracion del arreglo
-    byte n, cont;
+
     /**
      * Creates new form FrmVentana
      */
+    int lista[]; // DECLARACION DEL ARREGLO
+    byte n, cont;
+
     public FrmVentana() {
         cont = 0;
         n = 5;
-        lista = new int[n];//reserva de memoria
+        lista = new int[n]; // RESERVA DE MEMORIA
         initComponents();
     }
 
@@ -35,6 +43,7 @@ public class FrmVentana extends javax.swing.JFrame {
             }
         });
 
+        txaLista.setEditable(false);
         txaLista.setColumns(20);
         txaLista.setRows(5);
         jScrollPane1.setViewportView(txaLista);
@@ -44,48 +53,60 @@ public class FrmVentana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(21, 21, 21)
-                .addComponent(btnCapturar)
-                .addGap(98, 98, 98)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(77, 77, 77)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(148, 148, 148)
+                        .addComponent(btnCapturar)))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addContainerGap(92, Short.MAX_VALUE)
                 .addComponent(btnCapturar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(22, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(27, 27, 27))
+                .addGap(32, 32, 32)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void imprimirLista(){
-      String cadena = "";  
+      String cadena = "   ";  
         
         for (int i = 0; i < cont; i++) {
-          cadena = cadena + lista[i] + "\n";
+          cadena = cadena + lista[i] + "\n   ";
         txaLista.setText(cadena);  
         }
     }
     
-    private void btnCapturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapturarActionPerformed
-        int num;  
+    private void calcularPromedio(){
+      float suma = 0;   
         
-        if(cont<n){
-        num = Integer.parseInt(JOptionPane.showInputDialog(null,"Ingresa un valor:"));
-        lista[cont] = num;
-        cont++;
-        imprimirLista();
-      }else{
-            JOptionPane.showMessageDialog(null, "No hay lugar en el arreglo");
+        for (int i = 0; i < cont; i++)
+          suma = suma + lista[i];
+          txaLista.append("El promedio es: " + suma/cont + "");
+    }
+    
+    private void btnCapturarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapturarActionPerformed
+      int num;
+      
+        if(cont < n){
+          num = Integer.parseInt(JOptionPane.showInputDialog(null, "Escribe un valor: "));
+          lista[cont] = num;
+          cont++;
+          
+          imprimirLista();
+          txaLista.append("--------------\n");
+          calcularPromedio();
+        }else{
+            JOptionPane.showMessageDialog(null,"No hay lugar en el arreglo");
         }
-
+        
     }//GEN-LAST:event_btnCapturarActionPerformed
 
     /**
