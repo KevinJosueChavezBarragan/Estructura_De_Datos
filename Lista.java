@@ -39,16 +39,42 @@ public class Lista {
         return numElem;
     }
 
-    public byte getTamaño() {
-        return tamaño;
-    }
-
     public void setNumElem(byte numElem) {
         this.numElem = numElem;
+    }
+
+    public byte getTamaño() {
+        return tamaño;
     }
 
     public void setTamaño(byte tamaño) {
         this.tamaño = tamaño;
     }
 
+    public boolean agregarElemento(String valor){
+        if (numElem < tamaño){
+            lista[numElem] = valor;
+            numElem++;
+            return true;
+        }else
+            return false;
+    }
+    
+    public String obtenerElemento(){
+        String cadena = "";
+        
+        for (byte i = 0; i < numElem; i++) 
+            if(i<(numElem-1))
+              cadena += lista[i] + ", \n";
+            else
+                cadena += lista[i];
+        return cadena;
+    }
+    
+    public boolean borrarElementos(){
+        if(numElem>0){
+            numElem--;
+        }
+        return true;
+    }
 }
