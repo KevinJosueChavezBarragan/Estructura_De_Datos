@@ -77,4 +77,21 @@ public class Lista {
         }
         return true;
     }
+    
+    public boolean insertarElemento(String dato){
+        byte x, i;
+            if(numElem<tamaño){
+                x=0;
+                if(numElem>0){
+                    while(lista[x].compareTo(dato)>0)
+                        x++;
+                    for(i=numElem; i>x; i--)
+                        lista[i] = lista[i-1];
+                }
+                lista[x] = dato;
+                numElem++;
+                return true;
+            }
+            return false;
+    }
 }
