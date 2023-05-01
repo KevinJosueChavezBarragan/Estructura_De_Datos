@@ -6,7 +6,11 @@
 
 /**
  *
- * @author Kevin Josue Chavez Barragan Fecha de creacion: 06/03/23
+ * @authors 
+ * Kevin Josue Chavez Barragan
+ * Yahir Gerardo Quezada Romero
+ * Jose Ivan Ramirez Romero
+ * Fecha de creacion: 06/03/23
  */
 public class Lista {
 //Atributos
@@ -51,47 +55,74 @@ public class Lista {
         this.tamaño = tamaño;
     }
 
-    public boolean agregarElemento(String valor){
-        if (numElem < tamaño){
+    public boolean agregarElemento(String valor) {
+        if (numElem < tamaño) {
             lista[numElem] = valor;
             numElem++;
             return true;
-        }else
+        } else {
             return false;
+        }
     }
-    
-    public String obtenerElemento(){
+
+    public String obtenerElemento() {
         String cadena = "";
-        
-        for (byte i = 0; i < numElem; i++) 
-            if(i<(numElem-1))
-              cadena += lista[i] + ", \n";
-            else
+
+        for (byte i = 0; i < numElem; i++) {
+            if (i < (numElem - 1)) {
+                cadena += lista[i] + ", \n";
+            } else {
                 cadena += lista[i];
+            }
+        }
         return cadena;
     }
-    
-    public boolean borrarElementos(){
-        if(numElem>0){
+
+    public boolean borrarElementos() {
+        if (numElem > 0) {
             numElem--;
         }
         return true;
     }
-    
-    public boolean insertarElemento(String dato){
+
+    public boolean insertarElemento(String dato) {
         byte x, i;
-            if(numElem<tamaño){
-                x=0;
-                if(numElem>0){
-                    while(lista[x].compareTo(dato)>0)
-                        x++;
-                    for(i=numElem; i>x; i--)
-                        lista[i] = lista[i-1];
+        if (numElem < tamaño) {
+            x = 0;
+            if (numElem > 0) {
+                while (lista[x].compareTo(dato) > 0) {
+                    x++;
                 }
-                lista[x] = dato;
-                numElem++;
-                return true;
+                for (i = numElem; i > x; i--) {
+                    lista[i] = lista[i - 1];
+                }
             }
-            return false;
+            lista[x] = dato;
+            numElem++;
+            return true;
+        }
+        return false;
     }
+
+    public boolean eliminarElemento(String dato) {
+        byte x, i;
+        if (numElem < tamaño) {
+            x = 0;
+            if (numElem > 0) {
+                while (lista[x].equals(dato) == false) {
+                    x++;
+                }
+                for (i = numElem; i < x; i++) {
+                    lista[i] = lista[i + 1];
+                    numElem--;
+                }
+            }
+            lista[x] = lista[x+1];
+            numElem--;
+            return true;
+        }
+        return false;
+    }
+    
+    
 }

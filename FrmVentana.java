@@ -1,3 +1,4 @@
+import javax.swing.JOptionPane;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -6,15 +7,20 @@
 
 /**
  *
- * @author moviles
+ * @authors 
+ * Kevin Josue Chavez Barragan
+ * Yahir Gerardo Quezada Romero
+ * Jose Ivan Ramirez Romero
+ * Fecha de creacion: 06/03/23
  */
 public class FrmVentana extends javax.swing.JFrame {
-
+private Lista l;
     /**
      * Creates new form FrmVentana
      */
     public FrmVentana() {
         initComponents();
+        l = new Lista();
     }
 
     /**
@@ -27,27 +33,43 @@ public class FrmVentana extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        btnIterativo = new javax.swing.JButton();
-        btnRecursivo = new javax.swing.JButton();
+        txaLista = new javax.swing.JTextArea();
+        btnAgregar = new javax.swing.JButton();
+        btnBorrar = new javax.swing.JButton();
+        btnInsertar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txaLista.setColumns(20);
+        txaLista.setRows(5);
+        jScrollPane1.setViewportView(txaLista);
 
-        btnIterativo.setText("Factorial Iterativo");
-        btnIterativo.addActionListener(new java.awt.event.ActionListener() {
+        btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIterativoActionPerformed(evt);
+                btnAgregarActionPerformed(evt);
             }
         });
 
-        btnRecursivo.setText("Factrorial Recursivo");
-        btnRecursivo.addActionListener(new java.awt.event.ActionListener() {
+        btnBorrar.setText("Borrar");
+        btnBorrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRecursivoActionPerformed(evt);
+                btnBorrarActionPerformed(evt);
+            }
+        });
+
+        btnInsertar.setText("Insertar");
+        btnInsertar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnInsertarActionPerformed(evt);
+            }
+        });
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
             }
         });
 
@@ -56,38 +78,75 @@ public class FrmVentana extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(78, 78, 78)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(90, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(btnRecursivo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnIterativo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(128, 128, 128))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(62, 62, 62)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnInsertar, javax.swing.GroupLayout.DEFAULT_SIZE, 92, Short.MAX_VALUE)
+                            .addComponent(btnAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(39, 39, 39)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnBorrar, javax.swing.GroupLayout.DEFAULT_SIZE, 85, Short.MAX_VALUE)
+                            .addComponent(btnEliminar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(btnIterativo)
+                .addContainerGap(65, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnBorrar, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRecursivo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInsertar, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEliminar))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIterativoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIterativoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnIterativoActionPerformed
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        String texto = JOptionPane.showInputDialog(this, "Escribe el texto");
+        if(l.agregarElemento(texto)){
+          JOptionPane.showMessageDialog(this,"Se muestra"); 
+          txaLista.setText(l.obtenerElemento());
+        }else
+          JOptionPane.showMessageDialog(this, "No se muestra");
+    }//GEN-LAST:event_btnAgregarActionPerformed
 
-    private void btnRecursivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRecursivoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnRecursivoActionPerformed
+    private void btnBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBorrarActionPerformed
+         if(l.borrarElementos()){
+          JOptionPane.showMessageDialog(this,"Se borró"); 
+          txaLista.setText(l.obtenerElemento());
+        }else
+          JOptionPane.showMessageDialog(this, "No hay para borrar");                                         
+
+    }//GEN-LAST:event_btnBorrarActionPerformed
+
+    private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
+        String texto = JOptionPane.showInputDialog(this, "Escribe el texto");
+        if(l.insertarElemento(texto)){
+          JOptionPane.showMessageDialog(this,"Se insertó"); 
+          txaLista.setText(l.obtenerElemento());
+        }else
+          JOptionPane.showMessageDialog(this, "No se insertó");
+    }//GEN-LAST:event_btnInsertarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        String texto = JOptionPane.showInputDialog(this, "Escribe el elemento a elimianr");
+        if(l.eliminarElemento(texto)){
+          JOptionPane.showMessageDialog(this,"Se eliminó"); 
+          txaLista.setText(l.obtenerElemento());
+        }else
+          JOptionPane.showMessageDialog(this, "No se eliminó");
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -125,9 +184,11 @@ public class FrmVentana extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnIterativo;
-    private javax.swing.JButton btnRecursivo;
+    private javax.swing.JButton btnAgregar;
+    private javax.swing.JButton btnBorrar;
+    private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnInsertar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txaLista;
     // End of variables declaration//GEN-END:variables
 }
